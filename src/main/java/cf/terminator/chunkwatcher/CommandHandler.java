@@ -156,7 +156,7 @@ class CommandHandler extends CommandBase{
         }
     }
 
-    public void addToBlacklist(String mod) throws CommandException{
+    private void addToBlacklist(String mod) throws CommandException{
         for(JsonElement blacklisted :Main.CONFIG.getAsJsonArray("Blacklist")){
             if(mod.equals(blacklisted.getAsString().toLowerCase())){
                 throw new CommandException("Mod was already blocked!");
@@ -173,8 +173,7 @@ class CommandHandler extends CommandBase{
         }
     }
 
-
-    public void removeFromBlacklist(String mod) throws CommandException{
+    private void removeFromBlacklist(String mod) throws CommandException{
         boolean didRemove = false;
         JsonArray list = new JsonArray();
         for(JsonElement e : Main.CONFIG.getAsJsonArray("Blacklist")){
@@ -210,7 +209,7 @@ class CommandHandler extends CommandBase{
         sender.addChatMessage(new TextComponentString("     Allow a mod to force chunks"));
     }
 
-    public static boolean isPlayer(ICommandSender sender) {
+    private static boolean isPlayer(ICommandSender sender) {
         String name = sender.getName();
         return !((name.equals("Server")) || (name.equals("Rcon")));
     }
